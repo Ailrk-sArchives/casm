@@ -1,5 +1,5 @@
 cabal-version:      3.0
-name:               as6502
+name:               casm
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -24,13 +24,19 @@ extra-source-files: CHANGELOG.md
 library
     exposed-modules:
       As6502
+      As8051
+      ASM
 
     -- Modules included in this library but not exported.
     other-modules:
-        As6502.Assembler
+        ASM.Assembler
+      , ASM.Macro
+
       , As6502.Operand
       , As6502.Operator
-      , As6502.Macro
+
+      , As8051.Operand
+      , As8051.Operator
 
       , Pass.Optimizer
       , Pass.Relaxation

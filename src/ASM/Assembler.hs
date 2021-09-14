@@ -15,7 +15,7 @@ data ASMState = ASMState
   , entry    :: Maybe Word8
   }
 
-newtype As6502 a = As6502 { unAs6502 :: RWS () ByteString ASMState a }
+newtype ASM isa a = ASM { unASM :: RWS () ByteString ASMState a }
   deriving
     ( Functor
     , Applicative
@@ -26,19 +26,18 @@ newtype As6502 a = As6502 { unAs6502 :: RWS () ByteString ASMState a }
 
 -- bdb
 class Bytes a where
-  db :: a -> As6502 ()
+  db :: a -> ASM isa ()
 
 nextLocation :: Word8 -> ASMState -> ASMState
 nextLocation offset s = s { location = location s + offset }
 
-input ::  [Word8] -> As6502 ()
-input bs = do
+code ::  [Word8] -> ASM isa ()
+code bs = do
   tell $ BS.pack bs
   modify next
   where
     next = nextLocation . fromIntegral $ length bs
 
-
 -- entrance
-runAs6502 :: As6502 ()
-runAs6502 = undefined
+runASM :: ASM isa ()
+runASM = undefined
