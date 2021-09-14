@@ -1,4 +1,4 @@
-cabal-version:      2.4
+cabal-version:      3.0
 name:               as6502
 version:            0.1.0.0
 
@@ -26,14 +26,18 @@ library
       As6502
 
     -- Modules included in this library but not exported.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    other-extensions:
+    other-modules:
         As6502.Assembler
       , As6502.Operand
       , As6502.Operator
+      , As6502.Macro
 
+      , Pass.Optimizer
+      , Pass.Relaxation
+
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
     build-depends:
         base ^>=4.14.1.0
       , bytestring
