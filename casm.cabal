@@ -29,12 +29,17 @@ library
 
     -- Modules included in this library but not exported.
     other-modules:
-        ASM.Assembler
-      , ASM.Macro
+        Internal
 
+      , ASM.Assembler
+      , ASM.Macro
+      , ASM.Error
+
+      , As6502.Internal
       , As6502.Operand
       , As6502.Operator
 
+      , As8051.Internal
       , As8051.Operand
       , As8051.Operator
 

@@ -5,6 +5,7 @@ module As6502.Operator where
 
 -- http://www.6502.org/tutorials/6502opcodes.html
 import As6502.Operand
+import As6502.Internal
 import Data.Word
 
 class Stat2Byte s where
