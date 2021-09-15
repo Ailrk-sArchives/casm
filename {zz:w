@@ -1,0 +1,24 @@
+module Test where
+
+import           ASM.Assembler
+import           As6502.Internal
+import           As6502.Operand
+import           As6502.Operator
+import           Data.ByteString (ByteString)
+import           Debug.Trace
+import Data.Word
+
+w :: (Integral n) => n -> Word8
+w n = fromIntegral n
+
+dw :: (Integral n) => n -> Word16
+dw n = fromIntegral n
+
+test1 :: (ASMState As6502, ByteString)
+test1 = runASM $ do
+  clc
+  sec
+  -- adc (w 10) X
+  clc
+  adc (dw 10) Y
+

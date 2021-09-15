@@ -9,7 +9,7 @@
 {-# LANGUAGE UndecidableInstances       #-}
 module ASM.Assembler where
 
-import           Control.Monad.RWS.Strict
+import           Control.Monad.RWS
 import           Data.ByteString   (ByteString)
 import qualified Data.ByteString   as BS
 import           Data.Foldable     (traverse_)
@@ -24,7 +24,7 @@ data ASMState isa = ASMState
   , entry    :: Maybe Word8
   }
 
-deriving instance Show (ISALocation isa) => Show (ASMState isa)
+instance Show (ISALocation isa) => Show (ASMState isa) where
 
 newtype ASM isa a = ASM { unASM :: RWS () ByteString (ASMState isa) a }
   deriving
