@@ -23,6 +23,5 @@ test1 :: (ASMState As6502, ByteString)
 test1 = runASM $ do
   clc
   sec
-  adc (w 10) X
   clc
   adc (dw 11) Y
