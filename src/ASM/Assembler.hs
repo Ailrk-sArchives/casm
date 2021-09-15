@@ -103,5 +103,8 @@ equ :: a -> ASM isa a
 equ = return
 
 -- entrance
-runASM :: ASM isa ()
-runASM = undefined
+runASM :: (Integral (ISALocation isa))
+       => ASM isa ()
+       -> (ASMState isa, ByteString)
+runASM n = let (_, s, b) = runRWS (unASM n) () (ASMState 0x00 Nothing)
+            in (s, b)
