@@ -8,7 +8,6 @@ module As6502.Operand where
 import           Data.Word
 import Data.Bits (Bits)
 -- http://www.obelisk.me.uk/6502/reference.html
---
 
 data A = A
 data X = X
