@@ -1,0 +1,48 @@
+{-# LANGUAGE DataKinds            #-}
+{-# LANGUAGE FlexibleContexts     #-}
+{-# LANGUAGE GADTs                #-}
+{-# LANGUAGE TypeFamilies         #-}
+{-# LANGUAGE UndecidableInstances #-}
+module As6502.Internal where
+
+import           Data.Bits
+import           Data.Word
+import           Internal
+
+data As6502
+type instance ISALocation As6502 = Word8
+
+
+-- goal:
+-- 1. when it's 1,2 digit numbers convert to Word8
+-- 2. when it's 3,4 digit numbers convert to Word16
+-- 3. other cases simply throw error
+
+
+data As6052Lit r where
+  Lit8 :: Word8 -> As6052Lit r
+  Lit16 :: Word16 -> As6052Lit r
+  deriving (Eq, Ord)
+
+instance Enum (As6052Lit r) where
+  toEnum n
+    | n >= 0 && n <= 0xff = Lit8 (fromIntegral n)
+    | n > 0xff && n <= 0xffff = Lit16 (fromIntegral n)
+    | otherwise = error "6502 support maximum 0xffff"
+  fromEnum (Lit8 n)  = fromEnum n
+  fromEnum (Lit16 n) = fromEnum n
+
+
+instance Ord (As6052Lit r) => Real (As6052Lit r) where
+
+instance Integral (As6052Lit r) where
+
+instance Num (As6052Lit r) where
+
+bar = case foo of
+        Lit8 _ -> error "lit8"
+        Lit16 _ -> error "lit8"
+  where
+    foo :: As6052Lit r
+    foo = 1
+

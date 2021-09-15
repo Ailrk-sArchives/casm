@@ -1,6 +1,7 @@
-{-# LANGUAGE DataKinds    #-}
-{-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE StandaloneKindSignatures #-}
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE GeneralisedNewtypeDeriving #-}
+{-# LANGUAGE StandaloneKindSignatures   #-}
+{-# LANGUAGE TypeFamilies               #-}
 
 module Internal where
 
@@ -11,3 +12,4 @@ import           Data.Word
 
 -- type ISALocation :: Type -> Num
 type family ISALocation isa
+
