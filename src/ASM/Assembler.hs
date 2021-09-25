@@ -10,9 +10,9 @@
 module ASM.Assembler where
 
 import           Control.Monad.RWS.Strict
-import           Data.ByteString   (ByteString)
-import qualified Data.ByteString   as BS
-import           Data.Foldable     (traverse_)
+import           Data.ByteString          (ByteString)
+import qualified Data.ByteString          as BS
+import           Data.Foldable            (traverse_)
 import           Data.Word
 import           Internal
 
@@ -70,7 +70,6 @@ code bs = do
     inc = incLocation . fromIntegral $ length bs
 
 -- byte :: (Bytes a, Num (ISALocation a)) => a -> ASM isa ()
-
 
 byte :: (Bytes a, ISA isa) => a -> ASM isa ()
 byte = defineByte

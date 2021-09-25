@@ -1,0 +1,20 @@
+:set -XAllowAmbiguousTypes
+:set -XDataKinds
+:set -XFlexibleInstances
+:set -XFunctionalDependencies
+:set -XGADTs
+:set -XRankNTypes
+:set -XScopedTypeVariables
+:set -XTypeApplications
+:set -XTypeFamilies
+:set -XFlexibleContexts
+:set -XTypeOperators
+
+:set -fprint-explicit-foralls
+:set -fprint-explicit-kinds
+:set -fprint-typechecker-elaboration
+
+import Data.Proxy
+import Control.Monad
+import Control.Traversable
+import Control.Foldable

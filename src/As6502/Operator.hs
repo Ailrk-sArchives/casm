@@ -6,6 +6,7 @@
 {-# LANGUAGE PolyKinds                #-}
 {-# LANGUAGE RankNTypes               #-}
 {-# LANGUAGE StandaloneKindSignatures #-}
+{-# LANGUAGE TemplateHaskell          #-}
 {-# LANGUAGE TypeFamilies             #-}
 -- {-# LANGUAGE AllowAmbiguousTypes #-}
 module As6502.Operator where
@@ -21,19 +22,22 @@ import qualified Data.ByteString as BS
 import           Data.Kind
 import           Data.Word
 import           Internal        (ISALocation)
+import           Util
+
 
 type As = ASM As6502 ()
 
-hi :: Word16 -> Word8
-hi = fromIntegral . byteSwap16
+-- hi :: Word16 -> Word8
+-- hi = fromIntegral . byteSwap16
 
-lo :: Word16 -> Word8
-lo = fromIntegral
+-- lo :: Word16 -> Word8
+-- lo = fromIntegral
 
 class Stat2Byte s where
   stat2Byte :: s -> Word8
 
 type Loc = ISALocation As6502
+
 
 class Adc w r where
   adc :: w -> r
@@ -61,6 +65,9 @@ instance Adc (Word8, X) As where -- INDX
 
 instance Adc (Word8, Y) As where -- INDY
   adc (n, Y) = code [0x71, n]
+
+-- adc' :: As6502Lit r -> As
+-- adc' n = adc $ fromIntegral n
 
 class And w r where
   and :: w -> r

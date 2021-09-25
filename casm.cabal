@@ -31,18 +31,25 @@ library
     other-modules:
         Internal
       , Test
+      , Util
 
       , ASM.Assembler
       , ASM.Macro
-      , ASM.Error
 
       , As6502.Internal
       , As6502.Operand
       , As6502.Operator
+      , As6502.Error
 
       , As8051.Internal
       , As8051.Operand
       , As8051.Operator
+      , As8051.Error
+
+      , As_X86_32.Internal
+      , As_X86_32.Operand
+      , As_X86_32.Operator
+      , As_X86_32.Error
 
       , Pass.Optimizer
       , Pass.Relaxation
@@ -53,6 +60,7 @@ library
     build-depends:
         base ^>=4.14.1.0
       , bytestring
+      , template-haskell
       , mtl
     hs-source-dirs: src
     default-language: Haskell2010
